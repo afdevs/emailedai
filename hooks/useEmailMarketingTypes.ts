@@ -4,53 +4,58 @@ function useEmailMarketingTypes() {
   const types: EmailType[] = useMemo(
     () => [
       {
-        label: "E-mails de bienvenue",
+        label: "E-mail de bienvenue",
         purpose:
-          "Introduire les nouveaux abonnés ou clients à votre marque, produits ou services.",
+          "Rédige-moi un e-mail pour introduire les nouveaux abonnés ou clients à ma marque, nos produits ou services.",
         value: "welcome",
       },
       {
-        label: "E-mails promotionnels",
+        label: "E-mail promotionnel",
         purpose:
-          "Encourager les achats avec des offres spéciales, des soldes ou des annonces de produits.",
-        value: "onboarding",
+          "Rédige-moi un e-mail pour encourager les achats avec des offres spéciales, des soldes ou des annonces de produits.",
+        value: "promotion",
       },
       {
-        label: "E-mails de lancement de produit",
+        label: "E-mail de lancement de produit",
         purpose:
-          "Annoncer un nouveau produit ou une nouvelle fonctionnalité pour susciter de l’intérêt et de l'engagement.",
-        value: "product_launching",
+          "Rédige-moi un e-mail pour annoncer un nouveau produit ou une nouvelle fonctionnalité afin de susciter de l'intérêt et de l'engagement.",
+        value: "product_launch",
       },
       {
-        label: "E-mails d'invitation à un événement",
+        label: "E-mail pour une collaboration",
         purpose:
-          "Inviter des prospects à des webinaires, événements de lancement de produits, ou démonstrations pour les engager davantage.",
-        value: "event_inviting",
+          "Rédige-moi un e-mail pour proposer une collaboration ou un partenariat afin d'élargir les opportunités d'affaires.",
+        value: "collaboration",
       },
       {
-        label: "E-mails éducatifs ou informatifs",
+        label: "E-mail d'invitation à un événement",
         purpose:
-          "Fournir des informations utiles pour éduquer les prospects sur votre produit ou secteur, et créer de la valeur sans approche commerciale directe.",
-        value: "educationnal",
+          "Rédige-moi un e-mail pour inviter des prospects à des webinaires, événements de lancement de produits, ou démonstrations pour les engager davantage.",
+        value: "event_invitation",
       },
       {
-        label: "E-mails de retargeting de contenu",
+        label: "E-mail de prestation de service",
         purpose:
-          "Réengager des prospects ayant montré un intérêt pour certains contenus (par exemple, une page produit) mais qui n’ont pas encore converti.",
+          "Rédige-moi un e-mail professionnel pour proposer mes services à un client potentiel, en mettant en avant mes compétences et mon expertise pour répondre à ses besoins spécifiques.",
+        value: "service_offer",
+      },
+      {
+        label: "E-mail éducatif ou informatif",
+        purpose:
+          "Rédige-moi un e-mail pour fournir des informations utiles afin d'éduquer les prospects sur votre produit ou secteur et créer de la valeur sans approche commerciale directe.",
+        value: "educational",
+      },
+      {
+        label: "E-mail de retargeting de contenu",
+        purpose:
+          "Rédige-moi un e-mail pour réengager des prospects ayant montré un intérêt pour certains contenus (par exemple, une page produit) mais qui n'ont pas encore converti.",
         value: "retargeting",
       },
       {
-        label:
-          "E-mails de preuve sociale et contenu généré par les utilisateurs",
+        label: "E-mail pour VIP ou offre exclusive",
         purpose:
-          "Partager des témoignages ou des avis de clients pour renforcer la crédibilité auprès de nouveaux prospects.",
-        value: "social_proof",
-      },
-      {
-        label: "E-mails pour VIP ou offres exclusives",
-        purpose:
-          "Offrir aux nouveaux prospects des offres exclusives ou des promotions temporaires pour encourager leur conversion.",
-        value: "promo",
+          "Rédige-moi un e-mail pour offrir aux nouveaux prospects des offres exclusives ou des promotions temporaires pour encourager leur conversion.",
+        value: "exclusive_offer",
       },
     ],
     []
