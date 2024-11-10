@@ -2,10 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import React from "react";
 
-function EmailContentGenerated({
-  content,
-  subject,
-}: EmailContentGeneratedProps) {
+function EmailContentGenerated({ content }: EmailContentGeneratedProps) {
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   return (
@@ -25,24 +22,15 @@ function EmailContentGenerated({
       <div
         className='email-generated bg-slate-100 p-5 rounded-md mt-0'
         ref={contentRef}
-      >
-        <div className='subject flex flex-row mb-3'>
-          <h2 className='mr-2'>Subjet:</h2>
-          <span className='font-bold'> {subject}</span>
-        </div>
-        <div
-          className='content'
-          dangerouslySetInnerHTML={{
-            __html: content?.replace(/\n/g, "<br>") || "",
-          }}
-        />
-      </div>
+        dangerouslySetInnerHTML={{
+          __html: content?.replace(/\n/g, "<br>") || "",
+        }}
+      />
     </div>
   );
 }
 
 type EmailContentGeneratedProps = {
-  subject: string;
   content: string;
 };
 export default EmailContentGenerated;

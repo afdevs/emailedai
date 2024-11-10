@@ -9,12 +9,12 @@ import EmailContentGenerated from "./email-content-generated";
 
 function ChatInterface() {
   const {
-    emailTypeSelected,
-    handleInputChange,
-    isLoading,
-    object,
-    submit,
+    prompt,
     inputRef,
+    isLoading,
+    generatedEmail,
+    handleSubmit,
+    handleInputChange,
   } = useChatHandler();
 
   return (
@@ -27,19 +27,14 @@ function ChatInterface() {
 
           <EmailMarketingTypes />
 
-          {object && (
-            <EmailContentGenerated
-              subject={object.subject || ""}
-              content={object.content || ""}
-            />
-          )}
+          {generatedEmail && <EmailContentGenerated content={generatedEmail} />}
 
           <div className='relative w-full'>
             <Textarea
               ref={inputRef}
               className='w-full min-h-[68px] max-h-[200px] pl-12 pr-24 py-3 rounded-lg border border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none overflow-hidden'
               placeholder='Exemple: Rédige-moi un e-mail professionnel pour proposer...'
-              value={emailTypeSelected.purpose}
+              value={prompt}
               onChange={handleInputChange}
               rows={1}
             />
@@ -51,10 +46,8 @@ function ChatInterface() {
               <Button
                 className='absolute right-2 bottom-2 h-8 w-8 p-0'
                 size='icon'
-                disabled={!Boolean(emailTypeSelected?.purpose) || isLoading}
-                onClick={async () => {
-                  submit(emailTypeSelected.purpose);
-                }}
+                disabled={!Boolean(prompt) || isLoading}
+                onClick={handleSubmit}
               >
                 {isLoading ? (
                   <Loader2 className='h-4 w-4 animate-spin' />

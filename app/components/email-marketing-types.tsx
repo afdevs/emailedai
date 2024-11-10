@@ -10,6 +10,7 @@ function EmailMarketingTypes() {
   const params = useSearchParams();
   const pathname = usePathname();
   const { types } = useEmailMarketingTypes();
+
   return (
     <div className='flex flex-wrap gap-3 justify-center'>
       {types.map((type) => (
