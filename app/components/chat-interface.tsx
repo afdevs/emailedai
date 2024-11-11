@@ -8,14 +8,8 @@ import useChatHandler from "@/hooks/useChatHandler";
 import EmailContentGenerated from "./email-content-generated";
 
 function ChatInterface() {
-  const {
-    emailTypeSelected,
-    handleInputChange,
-    isLoading,
-    object,
-    submit,
-    inputRef,
-  } = useChatHandler();
+  const { prompt, handleInputChange, isLoading, object, submit, inputRef } =
+    useChatHandler();
 
   return (
     <div className='min-h-[80vh] flex flex-col'>
@@ -39,7 +33,7 @@ function ChatInterface() {
               ref={inputRef}
               className='w-full min-h-[68px] max-h-[200px] pl-12 pr-24 py-3 rounded-lg border border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none overflow-hidden'
               placeholder='Exemple: Rédige-moi un e-mail professionnel pour proposer...'
-              value={emailTypeSelected.purpose}
+              value={prompt}
               onChange={handleInputChange}
               rows={1}
             />
@@ -51,9 +45,9 @@ function ChatInterface() {
               <Button
                 className='absolute right-2 bottom-2 h-8 w-8 p-0'
                 size='icon'
-                disabled={!Boolean(emailTypeSelected?.purpose) || isLoading}
+                disabled={!Boolean(prompt) || isLoading}
                 onClick={async () => {
-                  submit(emailTypeSelected.purpose);
+                  submit(prompt);
                 }}
               >
                 {isLoading ? (
