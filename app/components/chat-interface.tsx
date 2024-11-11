@@ -8,8 +8,15 @@ import useChatHandler from "@/hooks/useChatHandler";
 import EmailContentGenerated from "./email-content-generated";
 
 function ChatInterface() {
-  const { prompt, handleInputChange, isLoading, object, submit, inputRef } =
-    useChatHandler();
+  const {
+    prompt,
+    setPrompt,
+    handleInputChange,
+    isLoading,
+    messages,
+    append,
+    inputRef,
+  } = useChatHandler();
 
   return (
     <div className='min-h-[80vh] flex flex-col'>
@@ -21,12 +28,24 @@ function ChatInterface() {
 
           <EmailMarketingTypes />
 
-          {object && (
-            <EmailContentGenerated
-              subject={object.subject || ""}
-              content={object.content || ""}
-            />
-          )}
+          {messages.length > 0 &&
+            messages.map((message) => (
+              <div className='flex flex-col gap-2' key={message.id}>
+                {message.role === "user" && (
+                  <>
+                    <span className='text-right font-medium mb-2 inline-block'>
+                      Vous
+                    </span>
+                    <div className='bg-blue-500 text-white p-5 rounded-md mt-0 max-w-[75%] ml-auto'>
+                      {message.content}
+                    </div>
+                  </>
+                )}
+                {message.role === "assistant" && (
+                  <EmailContentGenerated content={message.content || ""} />
+                )}
+              </div>
+            ))}
 
           <div className='relative w-full'>
             <Textarea
@@ -47,7 +66,9 @@ function ChatInterface() {
                 size='icon'
                 disabled={!Boolean(prompt) || isLoading}
                 onClick={async () => {
-                  submit(prompt);
+                  append({ role: "user", content: prompt }).then(() => {
+                    setPrompt("");
+                  });
                 }}
               >
                 {isLoading ? (
