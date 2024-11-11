@@ -2,7 +2,7 @@ import React from "react";
 import useEmailMarketingTypes from "./useEmailMarketingTypes";
 import { useSearchParams } from "next/navigation";
 import { EmailSchema } from "@/app/api/chat/route";
-import { experimental_useObject } from "ai/react";
+import { experimental_useObject as useObject } from "ai/react";
 
 function useChatHandler() {
   const params = useSearchParams();
@@ -11,11 +11,11 @@ function useChatHandler() {
   const { types: emailTypes } = useEmailMarketingTypes();
   const [prompt, setPrompt] = React.useState("");
 
-  const { object, isLoading, submit } = experimental_useObject({
+  const { object, isLoading, submit } = useObject({
     schema: EmailSchema,
     api: "api/chat",
   });
-  console.log('object', object)
+
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(event.target.value);
     if (inputRef.current) {
