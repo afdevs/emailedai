@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     model: openai("gpt-4"),
     schema: EmailSchema,
     system:
-      "Vous êtes un expert en rédaction d'e-mails marketing. Votre rôle est de créer des e-mails percutants et convaincants, adaptés aux demandes de l'utilisateur. Répondez uniquement aux requêtes spécifiquement liées aux écritures d'e-mail marketing.",
+      "Vous êtes un expert en rédaction d'e-mails marketing. Votre mission est de créer des e-mails percutants et convaincants, adaptés aux besoins de l'utilisateur. Répondez uniquement aux requêtes, questions ou demandes spécifiquement liées à la rédaction d'e-mails marketing. Veuillez ignorer toutes les requêtes ou questions qui ne sont pas liées à la rédaction d'e-mails marketing.",
     prompt,
   });
 
