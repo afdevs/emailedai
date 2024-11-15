@@ -8,13 +8,12 @@ function useChatHandler() {
   const paramsType = params.get("type");
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
   const { types: emailTypes } = useEmailMarketingTypes();
-  const [prompt, setPrompt] = React.useState("");
-  const { messages, isLoading, append } = useChat({
+  const { messages, isLoading, append, input, setInput } = useChat({
     api: "api/chat",
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setPrompt(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(event.target.value);
     if (inputRef.current) {
       inputRef.current.style.height = "auto";
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
@@ -25,19 +24,19 @@ function useChatHandler() {
     if (paramsType) {
       const emailTypeFound = emailTypes?.find((el) => el?.value === paramsType);
       if (emailTypeFound) {
-        setPrompt(emailTypeFound.purpose);
+        setInput(emailTypeFound.purpose);
       }
     }
   }, [emailTypes, paramsType]);
 
   return {
     inputRef,
-    setPrompt,
-    prompt,
-    handleInputChange,
+    handleChange,
     messages,
     isLoading,
     append,
+    input,
+    setInput,
   };
 }
 

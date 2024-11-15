@@ -9,13 +9,13 @@ import EmailContentGenerated from "./email-content-generated";
 
 function ChatInterface() {
   const {
-    prompt,
-    setPrompt,
-    handleInputChange,
+    handleChange,
     isLoading,
     messages,
     append,
     inputRef,
+    input,
+    setInput,
   } = useChatHandler();
 
   return (
@@ -52,8 +52,8 @@ function ChatInterface() {
               ref={inputRef}
               className='w-full min-h-[68px] max-h-[200px] pl-12 pr-24 py-3 rounded-lg border border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none overflow-hidden'
               placeholder='Exemple: Rédige-moi un e-mail professionnel pour proposer...'
-              value={prompt}
-              onChange={handleInputChange}
+              value={input}
+              onChange={handleChange}
               rows={1}
             />
             <div className='absolute left-4 top-3'>
@@ -64,11 +64,11 @@ function ChatInterface() {
               <Button
                 className='absolute right-2 bottom-2 h-8 w-8 p-0'
                 size='icon'
-                disabled={!Boolean(prompt) || isLoading}
+                disabled={!Boolean(input) || isLoading}
                 onClick={async () => {
-                  append({ role: "user", content: prompt }).then(() => {
-                    setPrompt("");
-                  });
+                  append({ role: "user", content: input }).then(() =>
+                    setInput("")
+                  );
                 }}
               >
                 {isLoading ? (
